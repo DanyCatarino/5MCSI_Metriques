@@ -49,9 +49,9 @@ def meteo():
 
 @app.route('/commits/')
 def get_commits():
-    url = "https://api.github.com/repos/DanyCatarino/5MCSI_Metriques/commits"
-    response = urlopen(url)
-    data = json.loads(response.read())
+    response = urlopen('https://api.github.com/repos/DanyCatarino/5MCSI_Metriques/commits')
+    raw_content = response.read()
+    data = json.loads(raw_content.decode('utf-8'))
 
     commit_details = []
 
