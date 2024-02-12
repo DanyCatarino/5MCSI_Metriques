@@ -10,7 +10,7 @@
       google.charts.load('current', { packages: ['corechart'] });
       google.charts.setOnLoadCallback(drawHistogram);
 
-      function drawHistogram() {
+      function drawHisto() {
         function drawChart(data) {
           var dataArray = [['Date', 'Température']];
           data.results.forEach(entry => {
@@ -22,10 +22,10 @@
           var options = {
             title: 'Histogramme',
             legend: { position: 'none' },
-            histogram: { bucketSize: 1, minValue: 0, maxValue: 40 }
+            histogram: { bucketSize: 1, minValue: 5, maxValue: 20 }
           };
 
-          var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+          var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
           chart.draw(dataTable, options);
         }
 
