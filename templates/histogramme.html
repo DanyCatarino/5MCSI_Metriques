@@ -20,11 +20,12 @@
           var dataTable = google.visualization.arrayToDataTable(dataArray);
 
           var options = {
-            title: 'Évolution des températures de Paris pour les 16 prochains jours',
-            curveType: 'function',
-            legend: { position: 'bottom' }
+            title: 'Histogramme JSON Sample OpenWeatherMap',
+            legend: { position: 'none' },
+            histogram: { bucketSize: 1, minValue: 5, maxValue: 15 }
           };
-          var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+          var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
           chart.draw(dataTable, options);
         }
 
