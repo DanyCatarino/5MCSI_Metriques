@@ -5,7 +5,6 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
   <body>
-    <div id="chart_div"></div>
     <script>
       google.charts.load('current', { packages: ['corechart'] });
       google.charts.setOnLoadCallback(drawHistogram);
@@ -22,7 +21,7 @@
           var options = {
             title: 'Histogramme',
             legend: { position: 'none' },
-            histogram: { bucketSize: 1, minValue: 0, maxValue: 40 }
+            histogram: { bucketSize: 1, minValue: 0, maxValue: 15 }
           };
 
           var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
