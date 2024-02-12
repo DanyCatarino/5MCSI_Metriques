@@ -58,7 +58,7 @@ def get_commits():
     for commit in data:
         author_name = commit['commit']['author']['name']
         commit_date = commit['commit']['author']['date']
-        commit_details.append({'author': author_name, 'time': time_str})
+        commit_details.append({'author': author_name, 'time': commit_date})
 
     return jsonify(commit_details)
 
