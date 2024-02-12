@@ -29,7 +29,7 @@
           chart.draw(dataTable, options);
         }
 
-        fetch('/paris/')
+        fetch('/previsions/')
           .then(response => response.json())
           .then(data => {
             drawChart(data);
