@@ -48,15 +48,24 @@ def meteo():
     return jsonify(results=results)
 
 @app.route('/commits/')
-def extract_minutes(date_string):
-    response = urlopen('https://api.github.com/repos/DanyCatarino/5MCSI_Metriques/commits')
-    raw_content = response.read()
-    json_content = json.loads(raw_content.decode('utf-8'))
-    results = []
-    for list_element in json_content.get('list', []):
-        date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
-        minutes = date_object.minute
-    return jsonify({'minutes': minutes})
+def get_commits():
+    url = "https://api.github.com/repos/DanyCatarino/5MCSI_Metriques/commits"
+    response = urlopen(url)
+    data = json.loads(response.read())
+
+    commit_details = []
+
+    for commit in data:
+        author_name = commit['commit']['author']['name']
+        commit_date = commit['commit']['author']['date']
+        date_object = datetime.strptime(commit_date, '%Y-%m-%dT%H:%M:%SZ')
+        hour = date_object.hour
+        minute = date_object.minute
+        # Format de l'heure sous la forme HH:MM
+        time_str = f"{hour:02d}:{minute:02d}"
+        commit_details.append({'author': author_name, 'time': time_str})
+
+    return jsonify(commit_details)
 
 if __name__ == "__main__":
   app.run(debug=True)
