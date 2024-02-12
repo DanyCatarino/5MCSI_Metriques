@@ -47,5 +47,9 @@ def meteo():
         results.append({'Jour': dt_value, 'temp': temp_day_value})
     return jsonify(results=results)
 
+@app.route('/commits/')
+def commits():
+    return render_template('commits.html')
+
 if __name__ == "__main__":
   app.run(debug=True)
