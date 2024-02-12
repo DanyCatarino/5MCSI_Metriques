@@ -6,43 +6,12 @@
   </head>
   <body>
     <div id="chart_div"></div>
-    <!-- <script>
-      google.charts.load('current', { packages: ['corechart'] });
-      google.charts.setOnLoadCallback(drawHistogram);
-
-      function drawHistogram() {
-        function drawChart(data) {
-          var dataArray = [['Date', 'Température']];
-          data.results.forEach(entry => {
-            var date = new Date(entry.Jour * 1000);
-            dataArray.push([date.toLocaleDateString(), entry.temp]);
-          });
-          var dataTable = google.visualization.arrayToDataTable(dataArray);
-
-          var options = {
-            title: 'Histogramme from Sample OpenWeatherMap',
-            legend: { position: 'none' },
-            histogram: { bucketSize: 1, minValue: 5, maxValue: 15 }
-          };
-
-          var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
-          chart.draw(dataTable, options);
-        }
-
-        fetch('/previsions/')
-          .then(response => response.json())
-          .then(data => {
-            drawChart(data);
-          });
-      }
-    </script> -->
-
     <script>
       google.charts.load('current', { packages: ['corechart'] });
       google.charts.setOnLoadCallback(drawBackgroundColor);
       function drawBackgroundColor() {
         function drawChart(data) {
-        // Convertir les données récupérées en un tableau utilisable par Google Charts
+
         var dataTable = new google.visualization.DataTable();
         dataTable.addColumn('string', 'Date');
         dataTable.addColumn('number', 'Valeur');
@@ -50,7 +19,7 @@
           var date = new Date(entry.Jour * 1000);
           dataTable.addRow([date.toLocaleDateString(), entry.temp]);
         });
-        // Configurer les options du graphique en ligne
+
         var options = {
           title: 'Histogramme from Sample OpenWeatherMap',
           curveType: 'function',
@@ -59,7 +28,7 @@
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
         chart.draw(dataTable, options);
         }
-        // Récupération de données depuis notre API /paris/
+
         fetch('/previsions/')
         .then(response => response.json())
         .then(data => {
