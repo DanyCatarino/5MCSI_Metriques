@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Commits</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  </head>
+  <body>
+    <div id="chart_div"></div>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+  
+      function drawChart() {
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Minute');
+          data.addColumn('number', 'Commits');
+  
+          // Ajoutez vos données ici
+          Object.keys(minutes_count).forEach(function(minute) {
+              data.addRow([minute.toString(), minutes_count[minute]]);
+          });
+  
+          var options = {
+              title: 'Commits par Minute',
+              legend: { position: 'none' },
+              histogram: { bucketSize: 1 }
+          };
+  
+          var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+          chart.draw(data, options);
+      }
+    </script>
+  </body>
+</html>
