@@ -58,11 +58,6 @@ def get_commits():
     for commit in data:
         author_name = commit['commit']['author']['name']
         commit_date = commit['commit']['author']['date']
-        date_object = datetime.strptime(commit_date, '%Y-%m-%dT%H:%M:%SZ')
-        hour = date_object.hour
-        minute = date_object.minute
-        # Format de l'heure sous la forme HH:MM
-        time_str = f"{hour:02d}:{minute:02d}"
         commit_details.append({'author': author_name, 'time': time_str})
 
     return jsonify(commit_details)
